@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"strings"
 
 	"./checking"
@@ -18,6 +19,7 @@ var (
 	pathFlag     = flag.String("path", "", "a string")
 	nameFlag     = flag.String("name", "", "a string")
 	articlesFlag = flag.String("articles", "", "a string")
+	rivalsFlag   = flag.String("rivals", "", "a string")
 )
 
 var rivals []checking.Rival
@@ -26,11 +28,6 @@ var articles []string
 
 func init() {
 	flag.Parse()
-
-	if *hFlag || *helpFlag {
-		showHelp()
-		os.Exit(0)
-	}
 
 	rivalsPath := "./rivals.json"
 	fileData, err := ioutil.ReadFile(rivalsPath)
@@ -43,8 +40,27 @@ func init() {
 		panic(err)
 	}
 
+	if *hFlag || *helpFlag {
+		showHelp()
+		os.Exit(0)
+	}
+
 	if *articlesFlag != "" {
 		articles = strings.Split(*articlesFlag, ",")
+	}
+
+	if *rivalsFlag != "" {
+		tmpRivals := strings.Split(*rivalsFlag, ",")
+		newRivals := make([]checking.Rival, 0, len(tmpRivals))
+		for _, val := range tmpRivals {
+			i, err := strconv.Atoi(val)
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			newRivals = append(newRivals, rivals[i])
+		}
+		rivals = newRivals
 	}
 	fmt.Println(articles)
 
@@ -90,6 +106,13 @@ func argsStart() {
 }
 
 func comonStart() {
+	fmt.Println("0 - выбрать всех")
+	for i, rival := range rivals {
+		fmt.Printf("%v - %s\n", i+1, rival.Name)
+	}
+	fmt.Printf("%v - %s\n", len(rivals)+1, "подтвердить выбор")
+	fmt.Println("")
+	rivals = chooseRivals()
 	fmt.Printf("Конкуренты, которые просматриваются (%v):\n", len(rivals))
 	for _, rival := range rivals {
 		fmt.Print(rival.Name + " ")
@@ -124,6 +147,51 @@ func comonStart() {
 	}
 }
 
+func chooseRivals() []checking.Rival {
+	var inputData string
+	newRivals := make([]checking.Rival, 0)
+	for {
+		fmt.Print("-> ")
+		fmt.Scan(&inputData)
+		if inputData == "0" {
+			return rivals
+		}
+
+		i, err := strconv.Atoi(inputData)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		if i == len(rivals)+1 {
+			if len(newRivals) == 0 {
+				return rivals
+			}
+			return newRivals
+		}
+		if i <= 0 || i > len(rivals) {
+			fmt.Println("Неверное значение!")
+			continue
+		}
+		if contains(newRivals, rivals[i-1]) {
+			continue
+		}
+		newRivals = append(newRivals, rivals[i-1])
+		for _, val := range newRivals {
+			fmt.Print(val.Name + " ")
+		}
+		fmt.Println("")
+	}
+}
+
+func contains(arr []checking.Rival, val checking.Rival) bool {
+	for _, _val := range arr {
+		if _val.Name == val.Name {
+			return true
+		}
+	}
+	return false
+}
+
 func writeToFile(products interface{}, filename string, path string) error {
 	if *nameFlag != "" {
 		filename = *nameFlag
@@ -155,6 +223,12 @@ func showHelp() {
 	-path - определяет директорию, в которую будет записан результат работы (если флаг отцуствует, результат будет записан в директорию, где было вызвано приложение)
 	-name - определяет название файла, в который будет записан результат (по умолчанию файл имеет название первого артикула, расширение файла xml)
 	-articles - определяет перечисление артикулов, которые будут обработаны 
-	(перечислять в виде -articles="article1,article2,article3") (при отцуствии флага будет запрошен ввод артикула по ходу работы)
-	`)
+	(перечислять в виде -articles="article1,article2,article3") (при отцуствии флага будет запрошен ввод артикула по ходу работы)`)
+
+	fmt.Println(`
+	-rivals - определяет какие магазины будут просмотрены
+	(перечислять в виде -rivals="1,2,3", если ничего не введено, то будут выбраны все)`)
+	for i, val := range rivals {
+		fmt.Printf("\t%v - %s\n", i, val.Name)
+	}
 }
