@@ -1,0 +1,83 @@
+[
+	{
+		"name": "InstrBy",
+		"URL": "https://instr.by",
+		"searchURL": "https://instr.by/component/virtuemart/?keyword=%s&search=true&view=category&option=com_virtuemart&virtuemart_category_id=0",
+		"productsSelector": ".product:not(.js-recalculate)",
+		"priceSelector": "span.PricesalesPrice",
+		"titleSelector": ".vm-product-descr-container-1 a",
+		"t": ""
+	},
+	{
+		"name": "InstrumentBy",
+		"URL": "https://instrument.by",
+		"searchURL": "https://instrument.by/find/?findtext=%s",
+		"productsSelector": ".ok-product",
+		"priceSelector": ".ok-product__price-block",
+		"titleSelector": ".ok-product__title > a",
+		"t": ""
+	},
+	{
+		"name": "ToolsBy",
+		"URL": "http://www.tools.by",
+		"searchURL": "http://www.tools.by/?q=kat&part=1&keys=%s",
+		"productsSelector": ".products > tbody > tr:not(.subtitle)",
+		"priceSelector": ".div_price",
+		"titleSelector": ".div_naimen > a",
+		"t": ""
+	},
+	{
+		"name": "RemontToolsBy",
+		"URL": "http://remont.tools.by",
+		"searchURL": "http://remont.tools.by/?q=zap&part=1&keys=%s",
+		"productsSelector": "#products > tbody > tr[id]",
+		"priceSelector": "td:nth-child(5)",
+		"titleSelector": "td:nth-child(4) > a",
+		"t": ""
+	},
+	{
+		"name": "TProBy",
+		"URL": "https://tpro.by",
+		"searchURL": "https://tpro.by/search?q=%s",
+		"productsSelector": ".products-view-item",
+		"priceSelector": ".price-current",
+		"titleSelector": ".products-view-name > a",
+		"t": "\t"
+	},
+	{
+		"name": "By7745",
+		"URL": "https://7745.by",
+		"searchURL": "https://7745.by/search?keys=%s",
+		"productsSelector": ".catalog-item__wrapper",
+		"priceSelector": ".item-block_main-price > span",
+		"titleSelector": ".item-block_name",
+		"t": "\t"
+	},
+	{
+		"name": "Vek21By",
+		"URL": "https://www.21vek.by",
+		"searchURL": "https://www.21vek.by/search/?term=%s&sa=",
+		"productsSelector": ".result__item",
+		"priceSelector": ".g-price",
+		"titleSelector": ".result__name",
+		"t": ""
+	},
+	{
+		"name": "DelomasteraBy",
+		"URL": "https://delomastera.by",
+		"searchURL": "https://delomastera.by/search.html?filter_name=%s",
+		"productsSelector": ".item",
+		"priceSelector": ".item-prices",
+		"titleSelector": ".title > a",
+		"t": ""
+	},
+	{
+		"name": "OmaBy",
+		"URL": "https://www.oma.by",
+		"searchURL": "https://www.oma.by/search/?SORTBY=RELEVANSE&q=%s",
+		"productsSelector": ".product-item",
+		"priceSelector": ".product-item_price",
+		"titleSelector": ".product-item_title-box > div",
+		"t": "\t"
+	}
+]
