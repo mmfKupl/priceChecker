@@ -2,10 +2,10 @@
 	{
 		"name": "InstrBy",
 		"URL": "https://instr.by",
-		"searchURL": "https://instr.by/component/virtuemart/?keyword=%s&search=true&view=category&option=com_virtuemart&virtuemart_category_id=0",
-		"productsSelector": ".product:not(.js-recalculate)",
-		"priceSelector": "span.PricesalesPrice",
-		"titleSelector": ".vm-product-descr-container-1 a",
+		"searchURL": "https://instr.by/catalog/?q=%s",
+		"productsSelector": ".catalog_item_wrapp.catalog_item.item_wrap",
+		"priceSelector": "span.price_value",
+		"titleSelector": ".item-title a",
 		"t": ""
 	},
 	{
@@ -19,8 +19,8 @@
 	},
 	{
 		"name": "ToolsBy",
-		"URL": "http://www.tools.by",
-		"searchURL": "http://www.tools.by/?q=kat&part=1&keys=%s",
+		"URL": "https://www.tools.by",
+		"searchURL": "https://www.tools.by/?q=kat&part=1&keys=%s",
 		"productsSelector": ".products > tbody > tr:not(.subtitle)",
 		"priceSelector": ".div_price",
 		"titleSelector": ".div_naimen > a",
@@ -28,20 +28,23 @@
 	},
 	{
 		"name": "RemontToolsBy",
-		"URL": "http://remont.tools.by",
-		"searchURL": "http://remont.tools.by/?q=zap&part=1&keys=%s",
-		"productsSelector": "#products > tbody > tr[id]",
-		"priceSelector": "td:nth-child(5)",
-		"titleSelector": "td:nth-child(4) > a",
+		"URL": "https://remont.tools.by",
+		"searchURL": "https://remont.tools.by/?q=spares&keys=%s",
+		"productsSelector": "#spareszaps .row.row-card",
+		"priceSelector": ".row.spares-cena strong",
+		"titleSelector": ".zap-card-to-korz > .row > a",
 		"t": ""
 	},
 	{
 		"name": "TProBy",
 		"URL": "https://tpro.by",
 		"searchURL": "https://tpro.by/search?q=%s",
-		"productsSelector": ".products-view-item",
-		"priceSelector": ".price-current",
-		"titleSelector": ".products-view-name > a",
+		"productsSelector": ".items.productList .item.product.sku",
+		"priceSelector": ".priceVal",
+		"titleSelector": ".productColText .name",
+		"redirectedProductSelector": "#main",
+		"redirectedPriceSelector": ".item #tableContainer #elementTools .priceContainer .priceVal",
+		"redirectedTitleSelector": ".limiter h1.changeName",
 		"t": "\t"
 	},
 	{
@@ -51,6 +54,9 @@
 		"productsSelector": ".catalog-item__wrapper",
 		"priceSelector": ".item-block_main-price > span",
 		"titleSelector": ".item-block_name",
+		"redirectedProductSelector": ".product",
+		"redirectedPriceSelector": ".product__price-value",
+		"redirectedTitleSelector": ".product__title",
 		"t": "\t"
 	},
 	{
@@ -60,6 +66,7 @@
 		"productsSelector": ".result__item",
 		"priceSelector": ".g-price",
 		"titleSelector": ".result__name",
+		"urlSelector": ".result__link",
 		"t": ""
 	},
 	{
@@ -76,8 +83,9 @@
 		"URL": "https://www.oma.by",
 		"searchURL": "https://www.oma.by/search/?SORTBY=RELEVANSE&q=%s",
 		"productsSelector": ".product-item",
-		"priceSelector": ".product-item_price",
-		"titleSelector": ".product-item_title-box > div",
+		"priceSelector": ".price__normal",
+		"titleSelector": ".product-item_title .wrapper",
+		"urlSelector": ".area-link",
 		"t": "\t"
 	}
 ]

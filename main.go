@@ -9,8 +9,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-
-	"./checking"
 )
 
 var (
@@ -22,7 +20,7 @@ var (
 	rivalsFlag   = flag.String("rivals", "", "a string")
 )
 
-var rivals []checking.Rival
+var rivals []Rival
 
 var articles []string
 
@@ -51,11 +49,11 @@ func init() {
 
 	if *rivalsFlag != "" {
 		tmpRivals := strings.Split(*rivalsFlag, ",")
-		newRivals := make([]checking.Rival, 0, len(tmpRivals))
+		newRivals := make([]Rival, 0, len(tmpRivals))
 		for _, val := range tmpRivals {
 			i, err := strconv.Atoi(val)
 			if err != nil {
-				fmt.Println(err)
+				fmt.Println("init: ", err)
 				continue
 			}
 			newRivals = append(newRivals, rivals[i])
@@ -81,10 +79,10 @@ func argsStart() {
 		fmt.Printf("%s ", article)
 	}
 	fmt.Println("")
-	var productsWA = new(checking.ProductsWithSeveralArticle)
-	productsWA.Data = make([]*checking.Products, 0, len(rivals)+len(articles))
+	var productsWA = new(ProductsWithSeveralArticle)
+	productsWA.Data = make([]*Products, 0, len(rivals)+len(articles))
 	for _, article := range articles {
-		var products = new(checking.Products)
+		var products = new(Products)
 		for _, rival := range rivals {
 			product, err := rival.GetProductInfo(article)
 			if err != nil {
@@ -119,9 +117,9 @@ func comonStart() {
 	}
 	fmt.Println("")
 	var inputData string
-	var products = new(checking.Products)
+	var products = new(Products)
 	for {
-		products.Data = make([]*checking.Product, 0, len(rivals))
+		products.Data = make([]*Product, 0, len(rivals))
 		fmt.Print("Введите артикул для поиска (-1 для выхода):\n-> ")
 		fmt.Scan(&inputData)
 		if inputData == "-1" {
@@ -147,9 +145,9 @@ func comonStart() {
 	}
 }
 
-func chooseRivals() []checking.Rival {
+func chooseRivals() []Rival {
 	var inputData string
-	newRivals := make([]checking.Rival, 0)
+	newRivals := make([]Rival, 0)
 	for {
 		fmt.Print("-> ")
 		fmt.Scan(&inputData)
@@ -159,7 +157,7 @@ func chooseRivals() []checking.Rival {
 
 		i, err := strconv.Atoi(inputData)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("choose rivals: ", err)
 			continue
 		}
 		if i == len(rivals)+1 {
@@ -183,7 +181,7 @@ func chooseRivals() []checking.Rival {
 	}
 }
 
-func contains(arr []checking.Rival, val checking.Rival) bool {
+func contains(arr []Rival, val Rival) bool {
 	for _, _val := range arr {
 		if _val.Name == val.Name {
 			return true
