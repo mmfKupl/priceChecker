@@ -87,5 +87,15 @@
 		"titleSelector": ".product-item_title .wrapper",
 		"urlSelector": ".area-link",
 		"t": "\t"
+	},
+	{
+		"name": "AgroxBy",
+		"URL": "https://agrox.by",
+		"searchURL": "https://agrox.by/search?q=%s",
+		"productsSelector": ".b-product",
+		"priceSelector": ".price__normal",
+		"titleSelector": ".b-product__price-wrap .b-product__price",
+		"urlSelector": ".b-product__img-wrap",
+		"t": "\t"
 	}
 ]
